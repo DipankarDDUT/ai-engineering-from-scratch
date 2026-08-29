@@ -120,7 +120,55 @@ node -e "console.log('Node', process.version)"
 ```
 
 as I installed using winget install schniz.fnm 
-<img width="718" height="647" alt="image" src="https://github.com/user-attachments/assets/725fcec1-3c79-439f-929b-e11ed87171a0" />
+```bash
+
+Start with step 3 if this command does not work notepad $PROFILE then follow 
+No problem — your PowerShell profile folder/file doesn't exist yet. Let's create it.
+
+Run these one by one in PowerShell:
+
+Step 1
+ New-Item -ItemType Directory -Force -Path (Split-Path $PROFILE)
+
+
+Then:
+Step 2 
+New-Item -ItemType File -Force -Path $PROFILE
+
+
+Now open it:
+Step 3
+notepad $PROFILE
+
+
+Paste this line into Notepad:
+Step 4
+fnm env --use-on-cd | Out-String | Invoke-Expression
+
+
+Save and close Notepad.
+
+Then close the PowerShell/VS Code terminal and open a new one.
+
+Test:
+
+Step 5
+fnm --version
+
+
+Then:
+
+fnm install 22
+fnm use 22
+node -v
+
+
+You should get a Node version beginning with v22.
+
+
+
+
+```
 
 
 **macOS / Apple Silicon (M1/M2/M3/M4):** If the installer stops with `Error: Cannot install under Rosetta 2 in ARM default prefix (/opt/homebrew)`, your terminal is running under Rosetta 2 (`arch` prints `i386`) while Homebrew is a native arm64 build. Install fnm forcing arm64, wire it into your shell, then rerun the commands above from `fnm install 22`:
