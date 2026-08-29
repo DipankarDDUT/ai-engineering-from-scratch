@@ -91,7 +91,7 @@ print(f"Vector: {a}, dot product with itself: {np.dot(a, a)}")
 
 For TypeScript lessons (agents, MCP servers, web apps).
 
-...bash 
+```bash 
 fnm stands for Fast Node Manager. It's a Node.js version manager written in Rust that lets you:
 
 What it does:
@@ -100,10 +100,16 @@ Install and switch between multiple versions of Node.js
 Manage Node.js versions per project or globally
 Automatically use the right Node.js version for each project
 
-...
+```
+
+```bash
+You can't install fnm with uv because fnm is a Node.js version manager (not a Python package), while uv is for Python package
+
+```
 
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash
+# for me above command curl didn't worked use in powershell winget install Schniz.fnm 
 fnm install 22
 fnm use 22
 
