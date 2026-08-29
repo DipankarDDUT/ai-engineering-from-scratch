@@ -109,7 +109,8 @@ You can't install fnm with uv because fnm is a Node.js version manager (not a Py
 
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash
-# for me above command curl didn't worked use in powershell winget install Schniz.fnm 
+# for me above command curl didn't worked use in powershell winget install Schniz.fnm
+# restart the terminal or open a new terminal cmd  whatever
 fnm install 22
 fnm use 22
 
