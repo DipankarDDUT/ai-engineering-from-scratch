@@ -159,11 +159,258 @@ fnm --version
 Then:
 
 fnm install 22
+
+// below command was not working  current PowerShell session still isn't loading the FNM environment.
+
+Troubleshoot
+Perfect 👍 FNM is working now.
+
+That warning just means Node.js 22.23.2 is already installed, so you don't need to install it again.
+
+Run:
+
+fnm use 22
+
+
+Then:
+
+node -v
+
+
+You should see:
+
+v22.23.2
+
+
+And check npm:
+
+npm -v
+
+If fnm use 22 works
+
+You're all set. 🎉
+
+For your AI Engineering From Scratch project, you can now run:
+
+npm init -y
+
+
+or, if you're starting a project with a framework, we can set that up next.
+
+still if fnm use 22 doesn't work then
+
+Got it — FNM itself is installed, but your current PowerShell session still isn't loading the FNM environment.
+
+Let's fix it directly.
+
+1. Check your profile path
+
+Run:
+
+echo $PROFILE
+
+
+It should show something like:
+
+C:\Users\deepa\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
+2. Add FNM to the profile automatically
+
+Run this exact command:
+
+"fnm env --use-on-cd | Out-String | Invoke-Expression" | Add-Content -Path $PROFILE
+
+3. Load the profile immediately
+
+Instead of restarting, run:
+
+. $PROFILE
+
+
+Then check:
+
+fnm env
+
+
+You should see several environment-variable commands.
+
+4. Now use Node 22
+fnm use 22
+
+
+Then:
+
+node -v
+
+
+Expected:
+
+v22.23.2
+
+If you still get the same error
+
+Run these two commands and send me the output:
+
+echo $PROFILE
+
+
+and
+
+Get-Content $PROFILE
+
+
+I'll tell you exactly what needs to be changed.
 fnm use 22
 node -v
 
 
 You should get a Node version beginning with v22.
+
+
+still use not working was getting 3 lines
+
+Great — your profile is correct and FNM is configured. You just have the same line 3 times, which isn't necessary.
+
+Let's clean it up and make sure it loads correctly.
+
+1. Replace your profile with one FNM line
+
+Run:
+
+Set-Content $PROFILE 'fnm env --use-on-cd | Out-String | Invoke-Expression'
+
+
+Now verify:
+
+Get-Content $PROFILE
+
+
+You should see only one line:
+
+fnm env --use-on-cd | Out-String | Invoke-Expression
+
+2. Reload the profile
+
+Run:
+
+. $PROFILE
+
+3. Check FNM
+
+Run:
+
+fnm --version
+
+
+You should get:
+
+1.39.0
+
+4. Use Node 22
+
+Now run:
+
+fnm use 22
+
+
+Then:
+
+node -v
+
+
+You should get:
+
+v22.23.2
+
+If it STILL gives the environment-variable error
+
+Run:
+
+fnm env
+
+
+and send me the output. Don't reinstall Node or FNM yet — your installation appears fine; we're just fixing the PowerShell environment.
+
+then if this is the error shown in powershell
+
+
+PS C:\Users\deepa\OneDrive\Desktop\AI Engineering From Scratch> . $PROFILE
+. : File C:\Users\deepa\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 cannot be loaded because
+running scripts is disabled on this system. For more information, see about_Execution_Policies at
+https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:3
++ . $PROFILE
++   ~~~~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+
+then
+
+Aha — now we found the actual problem. 👍
+
+FNM is installed correctly. Your PowerShell execution policy is blocking your profile script from running.
+
+Let's fix that.
+
+1. Allow your PowerShell profile to run
+
+Run this in PowerShell:
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+If PowerShell asks:
+
+Execution Policy Change
+[Y] Yes  [A] Yes to All  [N] No ...
+
+
+Type:
+
+Y
+
+
+and press Enter.
+
+2. Load your profile
+
+Now run:
+
+. $PROFILE
+
+
+There should be no error.
+
+3. Use Node 22
+fnm use 22
+
+
+Then:
+
+node -v
+
+
+You should get:
+
+v22.23.2
+
+
+And:
+
+npm -v
+
+4. Verify everything
+
+You can run:
+
+fnm current
+node -v
+npm -v
+
+
+If node -v shows v22.23.2, you're completely set. 🚀
+
+Don't reinstall FNM or Node. The issue was simply PowerShell's script execution policy.
 
 
 
