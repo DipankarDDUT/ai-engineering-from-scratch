@@ -68,6 +68,7 @@ uv python install 3.12
 
 uv venv
 source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+#I used  source .venv/Scripts/activate  to activate the virtual environment in bash in windows 
 
 uv pip install numpy matplotlib jupyter
 ```
