@@ -54,6 +54,8 @@ sudo apt update && sudo apt install -y build-essential git curl wget
 # Windows (use WSL2)
 wsl --install -d Ubuntu-24.04
 ```
+wsl --install -d Ubuntu-24.04 this might give error as specific version mentioned is the issue simply put 
+wsl --install -d Ubuntu
 
 ### Step 2: Python with uv
 
