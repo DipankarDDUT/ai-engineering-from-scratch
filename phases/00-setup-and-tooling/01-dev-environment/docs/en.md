@@ -119,6 +119,10 @@ npm install -g pnpm
 node -e "console.log('Node', process.version)"
 ```
 
+as I installed using winget install schniz.fnm 
+<img width="718" height="647" alt="image" src="https://github.com/user-attachments/assets/725fcec1-3c79-439f-929b-e11ed87171a0" />
+
+
 **macOS / Apple Silicon (M1/M2/M3/M4):** If the installer stops with `Error: Cannot install under Rosetta 2 in ARM default prefix (/opt/homebrew)`, your terminal is running under Rosetta 2 (`arch` prints `i386`) while Homebrew is a native arm64 build. Install fnm forcing arm64, wire it into your shell, then rerun the commands above from `fnm install 22`:
 
 ```bash
