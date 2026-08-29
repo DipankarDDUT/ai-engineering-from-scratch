@@ -62,7 +62,7 @@ wsl --install -d Ubuntu
 We use `uv` — it's 10-100x faster than pip and handles virtual environments automatically.
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh      #if using windows remember to use bash instead of powershell
 
 uv python install 3.12
 
