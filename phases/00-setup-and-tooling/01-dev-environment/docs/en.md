@@ -91,6 +91,17 @@ print(f"Vector: {a}, dot product with itself: {np.dot(a, a)}")
 
 For TypeScript lessons (agents, MCP servers, web apps).
 
+...bash 
+fnm stands for Fast Node Manager. It's a Node.js version manager written in Rust that lets you:
+
+What it does:
+
+Install and switch between multiple versions of Node.js
+Manage Node.js versions per project or globally
+Automatically use the right Node.js version for each project
+
+...
+
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash
 fnm install 22
