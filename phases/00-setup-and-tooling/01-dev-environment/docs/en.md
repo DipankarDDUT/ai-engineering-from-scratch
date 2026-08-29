@@ -75,6 +75,8 @@ uv pip install numpy matplotlib jupyter
 
 Verify:
 
+to verify as python was already installed using uv package manager simply type python in bash it will open python interpreter
+
 ```python
 import sys
 print(f"Python {sys.version}")
