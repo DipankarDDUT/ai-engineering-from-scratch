@@ -46,6 +46,13 @@ s0-commit-dag
 
 ## Build It
 
+### Check your git config
+
+```bash
+git config --list
+
+```
+
 ### Step 1: Configure git
 
 ```bash
@@ -71,6 +78,13 @@ git checkout -b experiment/new-optimizer
 
 git checkout main
 git merge experiment/new-optimizer
+```
+
+### Better worflow than Step 3
+
+```bash 
+    
+
 ```
 
 ### Step 4: Working with this course repo
