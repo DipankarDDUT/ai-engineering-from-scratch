@@ -485,6 +485,159 @@ one clear answer instead of a wall of warnings.
 
 Start the full beginner sequence:
 
+verify.py explain code 
+
+```python
+I'll break down this environment preflight checker for AI Engineering from Scratch:
+
+## **Module Docstring (Lines 1-4)**
+```python
+"""Route-aware environment preflight for AI Engineering from Scratch.
+
+Lesson: phases/00-setup-and-tooling/01-dev-environment/docs/en.md
+Run this file from the repository root before starting a learning route.
+"""
+```
+Explains the script's purpose: check if your system has the required tools before starting the course.
+
+## **Imports (Lines 6-17)**
+Standard libraries for running system checks:
+- `argparse` — parse command-line arguments
+- `importlib.util` — check if Python modules exist
+- `platform` — detect OS (Windows/Mac/Linux)
+- `subprocess` — run shell commands
+- `dataclasses` — define structured data
+
+## **Data Classes (Lines 20-37)**
+
+**`Result`** — stores check outcome:
+```python
+@dataclass(frozen=True)
+class Result:
+    ok: bool              # True/False
+    detail: str           # human-readable message
+```
+
+**`Probe`** — defines a single check:
+```python
+@dataclass(frozen=True)
+class Probe:
+    label: str            # e.g., "Python 3.11+"
+    run: Callable[[], Result]  # function that checks it
+    fix: str              # fix instructions if check fails
+```
+
+**`Route`** — defines a learning path:
+```python
+@dataclass(frozen=True)
+class Route:
+    label: str            # e.g., "Beginner course"
+    required: tuple       # must-have tools
+    optional: tuple       # nice-to-have tools
+    next_command: str     # what to run after checks pass
+    manual: tuple = ()    # extra manual steps
+```
+
+## **Check Functions (Lines 40-85)**
+
+**`command_result()`** — checks if a command exists and has min version:
+1. Find command on PATH using `shutil.which()`
+2. Run `--version` to get version string
+3. If `minimum_major` specified, parse and compare version numbers
+4. Return Result object
+
+**`python_result()`** — checks Python 3.11+:
+1. Get current Python version and executable path
+2. Compare against minimum (3.11)
+3. Return detailed Result
+
+**`module_result()`** — checks if a Python module is installed:
+1. Use `importlib.util.find_spec()` to check if module exists
+2. Return Result with import path
+
+**`gpu_result()`** — checks for GPU acceleration (CUDA or Apple MPS):
+1. Check if PyTorch is installed
+2. Check if CUDA is available
+3. Check if Apple MPS is available
+4. Otherwise return "CPU only"
+
+**`git_fix()`** — returns OS-specific instructions to install Git:
+- macOS: `xcode-select --install`
+- Windows: `winget install --id Git.Git`
+- Linux: `apt-get install git`
+
+## **PROBES Dictionary (Lines 92-134)**
+Defines all checkable tools:
+```python
+PROBES = {
+    "python": Probe(...),  # Python 3.11+
+    "git": Probe(...),     # Git version control
+    "node": Probe(...),    # Node.js 20+
+    "npx": Probe(...),     # npm package runner
+    "cargo": Probe(...),   # Rust package manager
+    "julia": Probe(...),   # Julia language
+    "numpy": Probe(...),   # Python data library
+    "torch": Probe(...),   # PyTorch ML library
+    # ... etc
+}
+```
+
+## **BASE_OPTIONAL (Line 137)**
+Tools that are optional for beginners but needed for specific routes.
+
+## **ROUTES Dictionary (Lines 139-197)**
+Defines learning paths:
+- **beginner** — just Python and Git
+- **ml-foundations** — adds NumPy, Matplotlib, Jupyter
+- **llm-engineering** — adds PyTorch, potentially GPU
+- **agents** — for agent engineering track
+- **mcp** — for Model Context Protocol track
+- **agent-skills** — requires Node.js (host SDKs)
+- **certification** — Claude certification prep
+
+Each route specifies:
+- Required tools (must pass)
+- Optional tools (nice-to-have)
+- Next command to run if all checks pass
+
+## **parse_args() (Lines 200-215)**
+Parses command-line arguments:
+```bash
+python verify.py --route beginner --show-later
+```
+- `--route` — pick which learning path to check
+- `--show-later` — also show optional tools
+
+## **print_probe() (Lines 218-232)**
+Runs one check and displays result:
+1. Run the probe's check function
+2. Print [PASS], [FAIL], or [LATER]
+3. Show detail message
+4. If failed, show fix instructions
+5. Return True if passed
+
+## **main() (Lines 235-269)**
+Main execution:
+1. Parse command-line args
+2. Get the selected route
+3. Run all required checks
+4. Optionally show later/optional checks
+5. Display manual steps if any
+6. Print summary and next command
+7. Return exit code (0 if all passed, 1 if failed)
+
+## **Entry Point (Line 272-273)**
+```python
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+Runs `main()` when script is executed directly.
+
+---
+
+**TL;DR:** This script checks if you have all required tools (Python, Git, Node, etc.) for your chosen learning route before starting AI Engineering from Scratch lessons.
+```
+
 ```bash
 python3 phases/00-setup-and-tooling/01-dev-environment/code/verify.py --route beginner
 ```
