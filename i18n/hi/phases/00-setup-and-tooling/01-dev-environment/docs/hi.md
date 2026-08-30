@@ -442,7 +442,7 @@ cargo --version
 गणित के भारी पाठों के लिए जहां जूलिया चमकती है।
 
 ```bash
-curl -fsSL https://install.julialang.org | sh
+curl -fsSL https://install.julialang.org | sh  #for me used windows package manager winget install julia -s msstore
 
 julia -e 'println("Julia ", VERSION)'
 ```
