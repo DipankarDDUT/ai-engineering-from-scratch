@@ -66,6 +66,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh      #if using windows remember 
 
 uv python install 3.12
 
+#to install pyhton globally in powershell using windpws package manager winget install -e --id Python.Python.3.12
+
 uv venv
 source .venv/bin/activate  # or .venv\Scripts\activate on Windows
 #I used  source .venv/Scripts/activate  to activate the virtual environment in bash in windows 
@@ -432,6 +434,9 @@ Performans kritik dersleri için (sürekli, sistemler).
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# for me in windows winget install Rustlang.Rustup installed globally
+
 
 rustc --version
 cargo --version
