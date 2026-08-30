@@ -435,6 +435,9 @@ For performance-critical lessons (inference, systems).
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# for me in windows winget install Rustlang.Rustup installed globally
+
+
 rustc --version
 cargo --version
 ```
