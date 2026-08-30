@@ -63,6 +63,7 @@ We use `uv` — it's 10-100x faster than pip and handles virtual environments au
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh      #if using windows remember to use bash instead of powershell
+# globally install from https://www.python.org/downloads/windows/
 
 uv python install 3.12
 
